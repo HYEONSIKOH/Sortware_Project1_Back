@@ -13,18 +13,70 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", initialValue = 315)
+    // IDENTITY: 데이터베이스의 자동 증가 기능을 사용하여 기본 키 값을 생성하는 방식
+    // SEQUENCE: 데이터베이스의 시퀀스를 사용하여 기본 키 값을 생성하는 방식
+    // 315번 이유: 1 ~ 314까지는 임의의 유저가 있다고 가정 (협업 필터링 데이터 때문)
+    private long userid;
 
     @Column(length = 45, nullable = false)
     private String id;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 100, nullable = false)
     private String pw;
+
+    @Column(length = 10, nullable = false)
+    private String nickname;
 
     @Column(length = 45, nullable = false)
     private String name;
 
     @Column(length = 45, nullable = false)
     private String email;
+
+    public void setUserId(long userid) {
+        this.userid = userid;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User (long userid, String id, String pw, String nickname, String name, String email) {
+        this.userid = userid;
+        this.id = id;
+        this.pw = pw;
+        this.nickname = nickname;
+        this.name = name;
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userid +
+                ", id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
