@@ -53,7 +53,7 @@ public class UserService {
                 });
 
         // 3. 닉네임이 중복인지?
-        userRepository.findByNickname(form.getId())
+        userRepository.findNicknameById(form.getId())
                 .ifPresent(user -> {
                     throw new RuntimeException("Nickname: " + form.getNickname() + "은 중복입니다!");
                 });

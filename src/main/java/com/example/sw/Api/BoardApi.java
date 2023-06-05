@@ -5,54 +5,53 @@ import com.example.sw.Jwt.Util;
 import com.example.sw.domain.Board;
 import com.example.sw.dto.BoardForm;
 import com.example.sw.repository.BoardRepository;
+import com.example.sw.repository.UserRepository;
+import com.example.sw.service.BoardService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/board")
 public class BoardApi {
-    @Value("${jwt.secret}")
-    private String secretKey;
 
     private BoardRepository boardRepository;
+    private BoardService boardService;
 
-    private Util util;
-
-    public BoardApi(BoardRepository boardRepository, Util util) {
+    public BoardApi(BoardRepository boardRepository, BoardService boardService) {
         this.boardRepository = boardRepository;
-        this.util = util;
+        this.boardService = boardService;
     }
+
     @PostMapping("insert")
     public ResponseEntity<String> SaveBoard (Authentication authentication, @RequestBody BoardForm form) {
         // 토큰을 이용하여 userId 값을 가져옴
         String userId = authentication.getName();
-        System.out.println(userId);
-
-        System.out.println(userId);
         form.setUserid(Long.parseLong(userId));
 
         // 1. Dto를 Entity 변환
         Board board = form.toEntity();
-        System.out.println(board.toString());
 
         // 2. Repository에게 Entity를 DB로 저장하게 함
         Board saved = boardRepository.save(board);
-        System.out.println(saved.toString());
 
         return ResponseEntity.ok().body("평점 감사합니다ㅏ~~");
     }
 
     @GetMapping("return")
     @ResponseBody
-    public List<Board> ReturnBoard (@RequestParam("movieid") long movieid) {
+    public String ReturnBoard (@RequestParam("movieid") long movieid) {
+        String boardData = boardService.BoardLoader(movieid);
 
-        System.out.println("movieId = " + movieid);
-        return boardRepository.findAllBymovieid(movieid);
-        // return boardList;
+        return boardData;
     }
 }

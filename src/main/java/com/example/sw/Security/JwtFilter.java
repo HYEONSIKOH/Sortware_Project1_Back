@@ -34,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 토큰 정보가 없다면? == Block!
         if (authorization == null) {
-            log.info("authentication is null!", authorization);
+            //log.info("authentication is null!", authorization);
             filterChain.doFilter(request, response);
             return;
         }
@@ -42,7 +42,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // 토큰 정보가 잘못되었다면....?
         try {
             if (!authorization.startsWith("Bearer ") || authorization.split(" ")[1].equals("undefined")) {
-                log.info("authentication가 잘못되었습니다!", authorization);
+                //log.info("authentication가 잘못되었습니다!", authorization);
                 filterChain.doFilter(request, response);
                 return;
             } else {

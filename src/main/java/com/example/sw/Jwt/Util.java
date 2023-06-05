@@ -21,7 +21,7 @@ public class Util {
                 .getBody().getExpiration().before(new Date());
     }
 
-    private static final long expireMs = 8640; // 토큰 만료 시간 (1시간)
+    private static final long expireMs = 86400000; // 토큰 만료 시간 (하루)
     public static String createJwt(long userid, String secretKey) {
         Claims claims = Jwts.claims();
         claims.put("userid", userid);

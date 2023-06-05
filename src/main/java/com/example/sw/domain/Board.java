@@ -1,5 +1,7 @@
 package com.example.sw.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +27,7 @@ public class Board implements Serializable {
     @Column(length = 80)
     private String comment;
 
-    @Column
+    @Column @JsonSerialize @JsonDeserialize
     private LocalDateTime date;
 
     public void setUserid(long userid) {

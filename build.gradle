@@ -35,6 +35,9 @@ dependencies {
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'// jwt 토큰
 
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0' // ? 시간 타입이라는데?
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
