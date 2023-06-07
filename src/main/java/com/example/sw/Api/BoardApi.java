@@ -1,25 +1,14 @@
 package com.example.sw.Api;
 
-
-import com.example.sw.Jwt.Util;
 import com.example.sw.domain.Board;
 import com.example.sw.dto.BoardForm;
 import com.example.sw.repository.BoardRepository;
-import com.example.sw.repository.UserRepository;
 import com.example.sw.service.BoardService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://121.165.182.97:3000")
 @RestController
 @RequestMapping("/board")
 public class BoardApi {

@@ -5,16 +5,14 @@ import com.example.sw.dto.UserForm;
 import com.example.sw.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "http://121.165.182.97:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor // 생성자 자동 생성

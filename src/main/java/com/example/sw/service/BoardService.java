@@ -33,8 +33,11 @@ public class BoardService {
 
             String nickName = optionalNickname.orElse("");
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm");
-            String dateString = board.getDate().format(formatter);
+            String dateString = "";
+            if (board.getDate() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm");
+                dateString = board.getDate().format(formatter);
+            }
 
             strippedBoard.put("id", board.getUserid());
             strippedBoard.put("rating", board.getRating());

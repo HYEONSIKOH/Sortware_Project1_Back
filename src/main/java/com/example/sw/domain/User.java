@@ -14,7 +14,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", initialValue = 315)
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
+    @Column(name = "userid")
     // IDENTITY: 데이터베이스의 자동 증가 기능을 사용하여 기본 키 값을 생성하는 방식
     // SEQUENCE: 데이터베이스의 시퀀스를 사용하여 기본 키 값을 생성하는 방식
     // 315번 이유: 1 ~ 314까지는 임의의 유저가 있다고 가정 (협업 필터링 데이터 때문)
