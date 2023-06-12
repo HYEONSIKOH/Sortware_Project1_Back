@@ -5,6 +5,7 @@ import com.example.sw.dto.UserForm;
 import com.example.sw.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -54,8 +55,11 @@ public class Login {
     }
 
     @PostMapping("loginTest")
-    public ResponseEntity<String> loginTest () {
-        return ResponseEntity.ok().body("로그인 유지");
+    public  ResponseEntity<Long> loginTest (Authentication authentication) {
+        // 토큰을 이용하여 userId 값을 가져옴
+        String userId = authentication.getName();
+
+        return ResponseEntity.ok().body(Long.parseLong(userId));
     }
 
 }

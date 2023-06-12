@@ -56,10 +56,18 @@ public class MovieRecommender {
         List<Board> boardList = boardRepository.findAll();
         List<Map<String, Object>> strippedList = new ArrayList<>();
 
+        Map<String, Object> strippedBoard = new HashMap<>();
+
+        strippedBoard.put("rating", 0);
+        strippedBoard.put("movieid", 0);
+        strippedBoard.put("userid", 0);
+
+        strippedList.add(strippedBoard);
+
         // DB에서 가져온 값을 json으로 바꿔주는 코드
         for (Board board : boardList) {
             // userid, movieid, rating만 포함하는 맵 생성
-            Map<String, Object> strippedBoard = new HashMap<>();
+            strippedBoard = new HashMap<>();
 
             strippedBoard.put("rating", board.getRating());
             strippedBoard.put("movieid", board.getMovieid());

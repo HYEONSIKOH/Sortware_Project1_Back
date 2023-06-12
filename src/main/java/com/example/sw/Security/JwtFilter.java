@@ -46,7 +46,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             } else {
-                log.info("authorization: {}", authorization);
+                // log.info("authorization: {}", authorization);
             }
         } catch (MalformedJwtException e) {
             System.out.println("토큰 값이 없거나 잘못되었습니다");
